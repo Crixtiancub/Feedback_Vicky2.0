@@ -1,1 +1,1 @@
-web: gunicorn prueba_Vicky.wsgi --log-file -
+web: gunicorn feedback_vicky.wsgi --log-file -

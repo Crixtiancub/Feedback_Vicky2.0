@@ -32,6 +32,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+JWT = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIxNDM5MDg0LCJqdGkiOiJiNTcwNzQ1NjAxZmY0YjJhODE2M2Y2NWJiNGI0YTgwNyIsInVzZXJfaWQiOjIzNTAsImluc3RpdHVjaW9uIjoxLCJzZWRlIjoxLCJyb2wiOjR9.cR3WsEkg7oJlCjbacqECOSxcYXVHWi6WXG6tkNwzPRg'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,7 +148,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # django_heroku.settings(locals())
-
-URL_VICKY = "https://qa.viclass.co/aiortc/vicky"
-URL_USUARIO = "https://qa.viclass.co/api/1.0/user/login/"
-JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzU0NzQwLCJqdGkiOiI3ZGQ2NTg4OWExZDU0ZDc2YjY1YmIxOWQ0MjVkZjAxOCIsInVzZXJfaWQiOjIzNTAsImluc3RpdHVjaW9uIjoxLCJzZWRlIjoxLCJyb2wiOjR9.sBfyDpfrXsHhDPIEPZZvp23cRc-L2ZiaSlSdYh66O4o"

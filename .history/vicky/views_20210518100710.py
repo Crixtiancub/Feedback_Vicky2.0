@@ -5,9 +5,24 @@ from .models import *
 from django.template.response import TemplateResponse
 import requests
 import json
-from prueba_Vicky.settings import URL_VICKY, JWT
+
+from vicky import urls
 
 # Create your views here.
+
+url_Vicky = "https://qa.viclass.co/aiortc/vicky"
+url_usuario = "https://qa.viclass.co/api/1.0/user/login/"
+
+login = {
+"username":"1076506683",
+"password":"abcd.1234"
+}
+
+respuesta = requests.post(url=url_usuario,
+json=login)
+
+auto = json.loads(respuesta.content)['access']
+
 def home(request):
 
     if request.GET:
@@ -90,13 +105,17 @@ def home(request):
         
         pregunta = str(request.POST.get('pregunta_Vicky'))
 
+        jwt_usuario = {
+            "Authorization": "Beaber " + auto,
+        }
+
         documento = {
             "pregunta": pregunta,
             "formato": "texto"
         }
 
-        respuesta = requests.post(url=URL_VICKY,
-        headers= { "Authorization": "Bearer " + JWT },
+        respuesta = requests.post(url=url_Vicky,
+        headers=jwt_usuario,
         json=documento)
 
         # respuesta = model.run_model(pregunta, user_name= request.session['user_Name'])

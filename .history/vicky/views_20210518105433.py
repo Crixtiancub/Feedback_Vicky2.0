@@ -5,9 +5,21 @@ from .models import *
 from django.template.response import TemplateResponse
 import requests
 import json
-from prueba_Vicky.settings import URL_VICKY, JWT
+from prueba_Vicky.settings import URL_USUARIO, URL_VICKY
+from vicky import urls
 
 # Create your views here.
+
+def login_user():
+
+    login = {
+    "username":"1076506683",
+    "password":"abcd.1234"
+    }
+
+    auto_user = json.loads(requests.post(url=URL_USUARIO,
+    json=login).content)['access']
+
 def home(request):
 
     if request.GET:
@@ -95,8 +107,9 @@ def home(request):
             "formato": "texto"
         }
 
+        
         respuesta = requests.post(url=URL_VICKY,
-        headers= { "Authorization": "Bearer " + JWT },
+        headers=jy,
         json=documento)
 
         # respuesta = model.run_model(pregunta, user_name= request.session['user_Name'])

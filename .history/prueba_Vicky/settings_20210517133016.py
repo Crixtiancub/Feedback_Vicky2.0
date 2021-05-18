@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import sys
 import os
-# import dj_database_url
-# from decouple import config
-# import django_heroku
+import dj_database_url
+from decouple import config
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,9 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+2_62ubb)!cufw^yo!2ij5j82w20m0vk1yv6=+!&_x*x#47)^i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vicky',
+    'modelo_IA'
 ]
 
 MIDDLEWARE = [
@@ -73,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'prueba_Vicky.wsgi.application'
+WSGI_APPLICATION = 'prueba_Vicky.wsgi.application'
 
 
 # Database
@@ -144,8 +146,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# django_heroku.settings(locals())
-
-URL_VICKY = "https://qa.viclass.co/aiortc/vicky"
-URL_USUARIO = "https://qa.viclass.co/api/1.0/user/login/"
-JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzU0NzQwLCJqdGkiOiI3ZGQ2NTg4OWExZDU0ZDc2YjY1YmIxOWQ0MjVkZjAxOCIsInVzZXJfaWQiOjIzNTAsImluc3RpdHVjaW9uIjoxLCJzZWRlIjoxLCJyb2wiOjR9.sBfyDpfrXsHhDPIEPZZvp23cRc-L2ZiaSlSdYh66O4o"
+django_heroku.settings(locals())

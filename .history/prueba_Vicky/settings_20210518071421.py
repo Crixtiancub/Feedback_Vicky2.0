@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-+2_62ubb)!cufw^yo!2ij5j82w20m0vk1yv6=+!&_x*x#47)^i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['']
+
 
 # Application definition
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vicky',
+    'modelo_IA'
 ]
 
 MIDDLEWARE = [
@@ -145,7 +147,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # django_heroku.settings(locals())
-
-URL_VICKY = "https://qa.viclass.co/aiortc/vicky"
-URL_USUARIO = "https://qa.viclass.co/api/1.0/user/login/"
-JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzU0NzQwLCJqdGkiOiI3ZGQ2NTg4OWExZDU0ZDc2YjY1YmIxOWQ0MjVkZjAxOCIsInVzZXJfaWQiOjIzNTAsImluc3RpdHVjaW9uIjoxLCJzZWRlIjoxLCJyb2wiOjR9.sBfyDpfrXsHhDPIEPZZvp23cRc-L2ZiaSlSdYh66O4o"

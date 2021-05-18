@@ -4,10 +4,13 @@ from vicky import templates
 from .models import *
 from django.template.response import TemplateResponse
 import requests
-import json
-from prueba_Vicky.settings import URL_VICKY, JWT
+
+from vicky import urls
 
 # Create your views here.
+
+url_Vicky = "https://qa.viclass.co/aiortc/vicky"
+
 def home(request):
 
     if request.GET:
@@ -90,20 +93,13 @@ def home(request):
         
         pregunta = str(request.POST.get('pregunta_Vicky'))
 
-        documento = {
-            "pregunta": pregunta,
-            "formato": "texto"
-        }
-
-        respuesta = requests.post(url=URL_VICKY,
-        headers= { "Authorization": "Bearer " + JWT },
-        json=documento)
+        respuesta = requests.post()
 
         # respuesta = model.run_model(pregunta, user_name= request.session['user_Name'])
 
         context = {
             "pregunta":pregunta,
-            "respuesta":json.loads(respuesta.content)['respuesta'],
+            "respuesta":respuesta,
             'num_visits': request.session['num_visits'],
         }
 

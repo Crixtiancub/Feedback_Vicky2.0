@@ -94,9 +94,9 @@ def home(request):
             "pregunta": pregunta,
             "formato": "texto"
         }
-
+        
         respuesta = requests.post(url=URL_VICKY,
-        headers= { "Authorization": "Bearer " + JWT },
+        headers= "Bearer " + JWT,
         json=documento)
 
         # respuesta = model.run_model(pregunta, user_name= request.session['user_Name'])
