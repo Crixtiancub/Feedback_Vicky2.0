@@ -75,8 +75,8 @@ def home(request):
             return render(request, 'dashboard.html')
 
         if 'break' in request.POST:
-            return redirect('../noVisitas')     
-    
+            return render(request, 'noVisitas.html')
+        
         pregunta = str(request.POST.get('pregunta_Vicky'))
 
         documento = {

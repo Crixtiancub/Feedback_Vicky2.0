@@ -11,9 +11,15 @@ from prueba_Vicky.settings import URL_VICKY, JWT
 def home(request):
 
     if request.GET:
-        request.session['user_Name'] = str(request.GET.get('user_Name'))      
+        request.session['user_Name'] = str(request.GET.get('user_Name'))
 
-        return render(request, 'dashboard.html')
+        request.session['num_visitas'] = 3
+
+        contexto = {
+            "num_visitas": request.session['num_visitas'],
+        }        
+
+        return render(request, 'dashboard.html' , contexto)
 
     if request.POST:
 
@@ -30,21 +36,42 @@ def home(request):
 
             envio_Pregunta.save()
 
-            contexto = {
-                "continue": "continuar",
+            request.session['num_visitas'] -= 1
+
+            if request.session['num_visitas'] == 0:
+
+                return redirect('../noVisitas')  
+
+            context = {
+                "num_visitas": request.session['num_visitas'],
             }
 
-            return TemplateResponse(request, 'dashboard.html', contexto)
+            return TemplateResponse(request, 'dashboard.html' , context)
 
         if 'No' in request.POST:
             pregunta = str(request.POST.get('retorno_Pregunta'))
             respuesta = str(request.POST.get('retorno_Respuesta'))
             acierto = str(request.POST.get('No'))
 
+            # envio_Pregunta = preguntas_Vicky(
+            #     pregunta=pregunta,
+            #     respuesta=respuesta,
+            #     acierto= acierto
+            #     )
+
+            # envio_Pregunta.save()
+
+            # request.session['num_visitas'] -= 1
+
+            # if request.session['num_visitas'] == 0:
+
+            #     return redirect('../noVisitas') 
+
             context = {
                 "back_pregunta": pregunta,
                 "back_respuesta": respuesta,
                 "acierto" : acierto,
+                "num_visitas": request.session['num_visitas'],
             } 
 
             return TemplateResponse(request, 'dashboard.html' , context)
@@ -65,18 +92,20 @@ def home(request):
 
             envio_Pregunta.save()
 
-            contexto = {
-                "continue": "continuar",
-            }
+            request.session['num_visitas'] -= 1
 
-            return TemplateResponse(request, 'dashboard.html', contexto)
+            if request.session['num_visitas'] == 0:
 
-        if 'continue' in request.POST:
-            return render(request, 'dashboard.html')
+                return redirect('../noVisitas') 
 
-        if 'break' in request.POST:
-            return redirect('../noVisitas')     
-    
+            context = {
+                "num_visitas": request.session['num_visitas'],
+            } 
+
+
+            return TemplateResponse(request, 'dashboard.html', context)
+
+        
         pregunta = str(request.POST.get('pregunta_Vicky'))
 
         documento = {
@@ -88,16 +117,23 @@ def home(request):
         headers= { "Authorization": "Bearer " + JWT },
         json=documento)
 
+        # respuesta = model.run_model(pregunta, user_name= request.session['user_Name'])
+
         context = {
             "pregunta":pregunta,
             "respuesta":json.loads(respuesta.content)['respuesta'],
+            "num_visitas": request.session['num_visitas'],
         }
 
         return TemplateResponse(request, 'dashboard.html' , context)
 
-    else:       
+    else:
+       
+        contexto = {
+            "num_visitas": request.session['num_visitas'],
+        }        
 
-        return render(request, 'dashboard.html')
+        return render(request, 'dashboard.html', contexto)
 
 def noVisitas(request):
 

@@ -6,7 +6,8 @@
 
     <h1>Ayudanos a alimentar a Vicky.</h1>
 
-    <h3>hazle preguntas a Vicky y dinos si el topico que ella 
+    <h3>hazle {{ num_visitas }} {%if num_visitas == 1%} pregunta{% else %} 
+        preguntas{% endif %}  a Vicky y dinos si el topico que ella 
         devuelve es correcto o no.</h3>  
 
     <form id="preguntar_Vicky" action="{% url 'vicky' %}" method="POST">
@@ -79,22 +80,6 @@
 
             <button type="submit" class="col-sm-2 btn btn-primary btn-lg"
             id="sugerencia" name="sugerencia">Dale tu sugerencia</button>
-        </form>
-
-    {% endif %}
-
-    {% if continue == 'continuar' %}
-
-        <form action="{% url 'vicky' %}" method="POST">
-            {% csrf_token%}
-
-            <h3>¿Quieres seguir alimentando a Vicky?</h3>
-
-            <button type="submit" class="col-sm-2 btn btn-primary btn-lg"
-            id="continue" name="continue" value="continue">Si</button>
-
-            <button type="submit" class="col-sm-2 btn btn-danger btn-lg"
-            id="break" name="break" value="break">No</button>
         </form>
 
     {% endif %}
