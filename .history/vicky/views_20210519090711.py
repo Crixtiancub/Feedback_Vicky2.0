@@ -7,7 +7,6 @@ import requests
 import json
 from prueba_Vicky.settings import URL_VICKY, JWT
 
-global num_visitas
 
 # Create your views here.
 def home(request):
