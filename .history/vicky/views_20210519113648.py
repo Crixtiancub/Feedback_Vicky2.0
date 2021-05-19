@@ -38,17 +38,20 @@ def home(request):
 
             request.session['num_visitas'] -= 1
 
-            if request.session['num_visitas'] == 0:
-
-                return redirect('../noVisitas')  
-
             context = {
                 "num_visitas": request.session['num_visitas'],
             }
 
+            if request.session['num_visitas'] == 0:
+
+                return redirect('../noVisitas')  
+
             return TemplateResponse(request, 'dashboard.html' , context)
 
         if 'No' in request.POST:
+
+            request.session['num_visitas'] -= 1
+
             acierto = str(request.POST.get('No'))
             pregunta = str(request.POST.get('retorno_Pregunta'))
             respuesta = str(request.POST.get('retorno_Respuesta'))
@@ -61,15 +64,13 @@ def home(request):
 
             envio_Pregunta.save()
 
-            request.session['num_visitas'] -= 1
+            context = {
+                "num_visitas": request.session['num_visitas'],
+            }
 
             if request.session['num_visitas'] == 0:
 
-                return redirect('../noVisitas') 
-
-            context = {
-                "num_visitas": request.session['num_visitas'],
-            } 
+                return redirect('../noVisitas')  
 
             return TemplateResponse(request, 'dashboard.html' , context)
 
