@@ -150,3 +150,5 @@ JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhw
 
 db_from_env = dj_database_url.config(conn_max_age=500)  
 DATABASES['default'].update(db_from_env)
+
+SESSION_ENGINE= 'django.contrib.sessions.backends.cache'
