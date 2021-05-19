@@ -122,6 +122,7 @@ def home(request):
     else:
 
         print(request.session['num_visitas'])
+
        
         contexto = {
             "num_visitas": request.session['num_visitas'],
