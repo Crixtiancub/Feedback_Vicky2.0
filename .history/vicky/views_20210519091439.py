@@ -46,7 +46,7 @@ def home(request):
             print("Pregunta Saved...")
 
             context = {
-                "num_visitas": request.session['num_visitas'],
+                "num_visitas":request.session['num_visitas'],
             }
 
             if request.session['num_visitas'] == 0:
@@ -76,7 +76,7 @@ def home(request):
             print("Pregunta Saved...")
 
             context = {
-                "num_visitas": request.session['num_visitas'],
+                "num_visitas":request.session['num_visitas'],
             }
 
             print(context)
@@ -106,7 +106,7 @@ def home(request):
         context = {
             "pregunta":pregunta,
             "respuesta":json.loads(respuesta.content)['respuesta'],
-            "num_visitas": request.session['num_visitas'],
+            "num_visitas":request.session['num_visitas'],
         }
 
         print(context)
@@ -116,7 +116,7 @@ def home(request):
     else:
        
         contexto = {
-            "num_visitas": request.session['num_visitas'],
+            "num_visitas":request.session['num_visitas'],
         }        
 
         return render(request, 'dashboard.html', contexto)
